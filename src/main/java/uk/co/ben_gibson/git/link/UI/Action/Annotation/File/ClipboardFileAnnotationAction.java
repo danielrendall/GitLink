@@ -28,6 +28,6 @@ public class ClipboardFileAnnotationAction extends AnnotationAction {
         @NotNull final VirtualFile file,
         @NotNull final LineSelection lineSelection
     ) {
-        GitLink.getInstance(project).copyFile(file, commit, lineSelection);
+        GitLink.getInstance(project).copyFile(file, commit, lineSelection, false);
     }
 }

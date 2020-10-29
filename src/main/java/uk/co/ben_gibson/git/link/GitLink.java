@@ -48,12 +48,12 @@ public class GitLink
         return ServiceManager.getService(project, GitLink.class);
     }
 
-    public void openFile(@NotNull final VirtualFile file, final Commit commit, final LineSelection lineSelection) {
-        handleFile(this.browserHandler, file, commit, lineSelection);
+    public void openFile(@NotNull final VirtualFile file, final Commit commit, final LineSelection lineSelection, final boolean forceBranch) {
+        handleFile(this.browserHandler, file, commit, lineSelection, forceBranch);
     }
 
-    public void copyFile(@NotNull final VirtualFile file, final Commit commit, final LineSelection lineSelection) {
-        handleFile(this.clipboardHandler, file, commit, lineSelection);
+    public void copyFile(@NotNull final VirtualFile file, final Commit commit, final LineSelection lineSelection, final boolean forceBranch) {
+        handleFile(this.clipboardHandler, file, commit, lineSelection, forceBranch);
     }
 
     public void openCommit(@NotNull final Commit commit, @NotNull final VirtualFile file) {
@@ -65,11 +65,11 @@ public class GitLink
     }
 
     private void handleFile(
-        @NotNull final UrlHandler urlHandler,
-        @NotNull final VirtualFile file,
-       final Commit commit,
-       final LineSelection lineSelection
-    ) {
+            @NotNull final UrlHandler urlHandler,
+            @NotNull final VirtualFile file,
+            final Commit commit,
+            final LineSelection lineSelection,
+            final boolean forceBranch) {
         try {
             final Repository repository = repositoryLocator.locate(file);
             final UrlFactory urlFactory = urlFactoryLocator.locate();
@@ -92,7 +92,7 @@ public class GitLink
                             selectedCommit = repository.currentCommit();
                         }
 
-                        if (selectedCommit != null) {
+                        if (selectedCommit != null && !forceBranch) {
                             url = urlFactory.createUrlToFileAtCommit(
                                 repository.remote(),
                                 repository.repositoryFileFromVirtualFile(file),
@@ -104,7 +104,7 @@ public class GitLink
                                 repository.remote(),
                                 repository.repositoryFileFromVirtualFile(file),
                                 repository.currentBranch(),
-                                lineSelection
+                                forceBranch ? null : lineSelection
                             );
                         }
 
@@ -125,7 +125,7 @@ public class GitLink
 
     private void handleCommit(@NotNull final UrlHandler urlHandler, @NotNull final Commit commit, @NotNull final VirtualFile file) {
         try {
-            final Repository repository = repositoryLocator.locate(file);;
+            final Repository repository = repositoryLocator.locate(file);
             final UrlFactory urlFactory = urlFactoryLocator.locate();
 
             Task.Backgroundable task = new Task.Backgroundable(project, "GitLink - Opening Commit")

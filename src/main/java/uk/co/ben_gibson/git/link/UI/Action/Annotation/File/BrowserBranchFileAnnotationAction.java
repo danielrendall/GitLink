@@ -10,24 +10,28 @@ import uk.co.ben_gibson.git.link.GitLink;
 import uk.co.ben_gibson.git.link.UI.Action.Annotation.AnnotationAction;
 import uk.co.ben_gibson.git.link.UI.LineSelection;
 
-public class BrowserFileAnnotationAction extends AnnotationAction {
+/**
+ * <Insert Description Here>
+ */
+public class BrowserBranchFileAnnotationAction extends AnnotationAction {
 
-    public BrowserFileAnnotationAction(@NotNull final FileAnnotation annotation) {
+    public BrowserBranchFileAnnotationAction(@NotNull final FileAnnotation annotation) {
         super(annotation);
     }
 
     @Override
     protected String displayName(@NotNull final RemoteHost remoteHost) {
-        return String.format("Open in %s", remoteHost.toString());
+        return String.format("Open branch in %s", remoteHost.toString());
     }
 
     @Override
     protected void perform(
-        @NotNull final Project project,
-        @NotNull final Commit commit,
-        @NotNull final VirtualFile file,
-        @NotNull final LineSelection lineSelection
+            @NotNull final Project project,
+            @NotNull final Commit commit,
+            @NotNull final VirtualFile file,
+            @NotNull final LineSelection lineSelection
     ) {
-        GitLink.getInstance(project).openFile(file, commit, lineSelection, false);
+        GitLink.getInstance(project).openFile(file, commit, lineSelection, true);
     }
+
 }

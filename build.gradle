@@ -3,7 +3,7 @@ plugins {
 }
 
 group 'uk.co.ben-gibson'
-version '3.3.3'
+version '3.3.3-DR-1'
 
 ext {
     if (!project.hasProperty("intellijPublishToken")) {
@@ -47,12 +47,16 @@ Make sure you have registered your project's root under the version control sett
 Preferences → Version Control (see unregistered roots) <br>
 <br>
 To open a file in the default browser select View &rarr; Open in (your selected host). Shortcuts are also available on
-the annotation gutter and VCS log window.
+the annotation gutter and VCS log window. <br>
+<br>
+With hacked in features to copy / open the file on the current branch even if the current commit exists on the server -
+this ignore the line to give you a generic link to the file (line number information may not be valid anyway if the
+file is subsequently edited)
     """
     changeNotes """
-<p>3.3.3</p>
+<p>3.3.3-DR-2</p>
 <ul>
-    <li>Fixed repository update error. <a href="https://github.com/ben-gibson/GitLink/issues/114">#114</a></li>
+    <li>Can now copy / open links to file on the current branch</li>
 </ul>
     """
 

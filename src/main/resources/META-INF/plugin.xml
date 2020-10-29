@@ -46,6 +46,19 @@
             <keyboard-shortcut keymap="$default" first-keystroke="shift ctrl O"/>
         </action>
         <action
+            id="uk.co.ben_gibson.git.link.UI.Action.Menu.MenuAction.BrowserBranch"
+            class="uk.co.ben_gibson.git.link.UI.Action.Menu.BrowserBranchMenuAction"
+            text="Open branch in Git Host"
+            description="Opens the file in the git host on the current branch using the default browser"
+        >
+            <add-to-group group-id="ViewMenu" anchor="last"/>
+            <add-to-group group-id="EditorPopupMenu"/>
+            <add-to-group group-id="ProjectViewPopupMenu"/>
+            <add-to-group group-id="EditorTabPopupMenu"/>
+            <keyboard-shortcut keymap="Mac OS X 10.5+" first-keystroke="shift alt ctrl O"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="shift alt ctrl O"/>
+        </action>
+        <action
             id="uk.co.ben_gibson.git.link.UI.Action.Menu.MenuAction.Clipboard"
             class="uk.co.ben_gibson.git.link.UI.Action.Menu.ClipboardMenuAction"
             text="Copy Link to Git Host"
@@ -57,6 +70,19 @@
             <add-to-group group-id="EditorTabPopupMenu"/>
             <keyboard-shortcut keymap="Mac OS X 10.5+" first-keystroke="shift ctrl C"/>
             <keyboard-shortcut keymap="$default" first-keystroke="shift ctrl C"/>
+        </action>
+        <action
+            id="uk.co.ben_gibson.git.link.UI.Action.Menu.MenuAction.ClipboardBranch"
+            class="uk.co.ben_gibson.git.link.UI.Action.Menu.ClipboardBranchMenuAction"
+            text="Copy Link to branch on Git Host"
+            description="Copies a link to the clipboard pointing to the file on the current branch in the git host"
+        >
+            <add-to-group group-id="ViewMenu" anchor="last"/>
+            <add-to-group group-id="EditorPopupMenu"/>
+            <add-to-group group-id="ProjectViewPopupMenu"/>
+            <add-to-group group-id="EditorTabPopupMenu"/>
+            <keyboard-shortcut keymap="Mac OS X 10.5+" first-keystroke="shift alt ctrl C"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="shift alt ctrl C"/>
         </action>
         <action
             id="uk.co.ben_gibson.git.link.UI.Action.VcsLog.BrowserVcsAction"

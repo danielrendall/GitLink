@@ -19,7 +19,7 @@ public class BrowserSelectInTarget implements com.intellij.ide.SelectInTarget
         Project project  = context.getProject();
         VirtualFile file = context.getVirtualFile();
 
-        GitLink.getInstance(project).openFile(file, null, null);
+        GitLink.getInstance(project).openFile(file, null, null, false);
     }
 
 

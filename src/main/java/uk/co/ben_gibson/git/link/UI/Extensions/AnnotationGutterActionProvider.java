@@ -7,7 +7,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import uk.co.ben_gibson.git.link.UI.Action.Annotation.Commit.BrowserCommitAnnotationAction;
 import uk.co.ben_gibson.git.link.UI.Action.Annotation.Commit.ClipboardCommitAnnotationAction;
+import uk.co.ben_gibson.git.link.UI.Action.Annotation.File.BrowserBranchFileAnnotationAction;
 import uk.co.ben_gibson.git.link.UI.Action.Annotation.File.BrowserFileAnnotationAction;
+import uk.co.ben_gibson.git.link.UI.Action.Annotation.File.ClipboardBranchFileAnnotationAction;
 import uk.co.ben_gibson.git.link.UI.Action.Annotation.File.ClipboardFileAnnotationAction;
 
 public class AnnotationGutterActionProvider implements com.intellij.openapi.vcs.annotate.AnnotationGutterActionProvider {
@@ -22,7 +24,9 @@ public class AnnotationGutterActionProvider implements com.intellij.openapi.vcs.
         private BrowserCommitAnnotationAction browserCommitAnnotationAction;
         private ClipboardCommitAnnotationAction clipboardCommitAnnotationAction;
         private BrowserFileAnnotationAction browserFileAnnotationAction;
+        private BrowserBranchFileAnnotationAction browserBranchFileAnnotationAction;
         private ClipboardFileAnnotationAction clipboardFileAnnotationAction;
+        private ClipboardBranchFileAnnotationAction clipboardBranchFileAnnotationAction;
         private Group fileGroup;
         private Group commitGroup;
 
@@ -32,13 +36,17 @@ public class AnnotationGutterActionProvider implements com.intellij.openapi.vcs.
             browserCommitAnnotationAction    = new BrowserCommitAnnotationAction(annotation);
             clipboardCommitAnnotationAction  = new ClipboardCommitAnnotationAction(annotation);
             browserFileAnnotationAction      = new BrowserFileAnnotationAction(annotation);
+            browserBranchFileAnnotationAction      = new BrowserBranchFileAnnotationAction(annotation);
             clipboardFileAnnotationAction    = new ClipboardFileAnnotationAction(annotation);
+            clipboardBranchFileAnnotationAction    = new ClipboardBranchFileAnnotationAction(annotation);
 
             fileGroup = new Group(
                 "File",
                 new AnAction[] {
                     browserFileAnnotationAction,
-                    clipboardFileAnnotationAction
+                    browserBranchFileAnnotationAction,
+                    clipboardFileAnnotationAction,
+                    clipboardBranchFileAnnotationAction
                 }
             );
 
@@ -62,7 +70,9 @@ public class AnnotationGutterActionProvider implements com.intellij.openapi.vcs.
             browserCommitAnnotationAction.consume(integer);
             clipboardCommitAnnotationAction.consume(integer);
             browserFileAnnotationAction.consume(integer);
+            browserBranchFileAnnotationAction.consume(integer);
             clipboardFileAnnotationAction.consume(integer);
+            clipboardBranchFileAnnotationAction.consume(integer);
         }
     }
 

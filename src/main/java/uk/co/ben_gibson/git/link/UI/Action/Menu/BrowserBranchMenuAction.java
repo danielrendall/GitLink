@@ -8,16 +8,19 @@ import uk.co.ben_gibson.git.link.Git.RemoteHost;
 import uk.co.ben_gibson.git.link.GitLink;
 import uk.co.ben_gibson.git.link.UI.LineSelection;
 
-public class BrowserMenuAction extends MenuAction {
+/**
+ * <Insert Description Here>
+ */
+public class BrowserBranchMenuAction extends MenuAction {
 
     @Override
     protected void perform(@NotNull final Project project, @NotNull final VirtualFile file, @Nullable final LineSelection lineSelection) {
-        GitLink.getInstance(project).openFile(file, null, lineSelection, false);
+        GitLink.getInstance(project).openFile(file, null, lineSelection, true);
     }
 
     @Override
     protected String displayName(@NotNull final RemoteHost remoteHost)
     {
-        return String.format("Open in %s", remoteHost.toString());
+        return String.format("Open branch in %s", remoteHost.toString());
     }
 }

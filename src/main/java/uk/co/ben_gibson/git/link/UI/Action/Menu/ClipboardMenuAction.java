@@ -12,7 +12,7 @@ public class ClipboardMenuAction extends MenuAction {
 
     @Override
     protected void perform(@NotNull final Project project, @NotNull final VirtualFile file, @Nullable final LineSelection lineSelection) {
-        GitLink.getInstance(project).copyFile(file, null, lineSelection);
+        GitLink.getInstance(project).copyFile(file, null, lineSelection, false);
     }
 
     @Override
