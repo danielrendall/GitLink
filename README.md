@@ -5,100 +5,20 @@
     Gogs or GitBlit using the default browser.</strong>
 </p>
 
-<div align="center">
-    <a href="https://travis-ci.org/ben-gibson/GitLink">
-        <img src="https://img.shields.io/travis/ben-gibson/GitLink/master.svg?style=for-the-badge" />
-    </a>
-    <img src="https://img.shields.io/jetbrains/plugin/d/8183-gitlink.svg?label=plugin%20downloads&style=for-the-badge" />
-    <a href="https://github.com/ben-gibson/GitLink/issues">
-        <img src="https://img.shields.io/github/issues/ben-gibson/GitLink.svg?style=for-the-badge" />
-    </a>
-    <a href="https://github.com/ben-gibson/GitLink/stargazers">
-        <img src="https://img.shields.io/github/stars/ben-gibson/GitLink.svg?style=for-the-badge" />
-    </a>
-    <img src="https://img.shields.io/github/tag/ben-gibson/GitLink.svg?style=for-the-badge" />
-    <img src="https://img.shields.io/jetbrains/plugin/v/8183-gitlink.svg?style=for-the-badge" />
-</div>
-<div align="center">
-  <img src="gitlink-demo.gif" alt="demo">
-</div>
+<p>Forked from <a href="https://github.com/ben-gibson/GitLink">ben-gibson / GitLink</a> with apologies for
+my terrible hacking. Consult the README there for build / installation instructions.</p>
 
-Installation
+Reason for forking
 -------------------------------------------------------------------------------
 
-This plugin is published on the
-[JetBrains Plugin Repository](https://plugins.jetbrains.com/plugin/8183):
+I wanted an easy way to generate links to a Github file on the master branch rather than a specific commit (for 
+documentation purposes) so I added some suitable menu options. I know nothing about IntelliJ plugin development, but I
+know how to cut and paste, and hack things about.
 
-    Preferences → Plugins → Browse Repositories → Search for "GitLink"
-
-### From Source
-
-Clone this repository:
-
-    $ git clone https://github.com/ben-gibson/GitLink
-    $ cd GitLink
-
-Update the permissions:
-
-     $ chmod +x ./gradlew
-
-Build the plugin zip file:
-
-    $ ./gradlew buildPlugin
-
-Install the plugin from `./build/distributions/GitLink-*.zip`:
-
-    Preferences → Plugins → Install plugin from disk
-
-
-Development
--------------------------------------------------------------------------------
-
-Update the permissions:
-
-     $ chmod +x ./gradlew
-
-Execute an IntelliJ IDEA instance with the plugin you're developing installed:
-
-    $ ./gradlew runIdea
-
-Run the tests:
-
-    $ ./gradlew test
-
-Usage
--------------------------------------------------------------------------------
-
-After installing the plugin set your remote host and enabled extensions in the preferences:
-
-      Preferences → Other Settings → GitLink
-      
-Make sure you have registered your projects root under the version control preferences:
-
-      Preferences → Version Control (see unregistered roots)
-
-To open the current file in the default browser:
-
-      View → Open in (your selected host) or
-      Select in... → Browser (GitLink)
-
-Shortcuts are also available on the annotation gutter and VCS log window.
-
-When viewing a file, the URL generated references the current commit unless that commit does not exist on the remote
-repository in which case it references the current branch instead. If the current branch also does not exist on the
-remote repository the default branch defined in the plugin configuration is used instead.
-
-Change log
--------------------------------------------------------------------------------
-
-Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
-
-Contributing
--------------------------------------------------------------------------------
-
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
-
-### Credits
+I also changed the way the link generation works so that if there's no line number selection (e.g. you right-click on
+a file in the tree and choose to generate link to branch), you don't get the annoying "#L0-L0" bit in the link. This
+is done in an ad-hoc way - if there's no line number selection, we check if the link template has a "#" in it and strip
+it off if so on the assumption that it's a line number fragment. Crude, but effective.
 
 License
 -------------------------------------------------------------------------------
