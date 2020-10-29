@@ -148,8 +148,15 @@ public class URLTemplateProcessor
         // no line selection has been made however, this is a little more complicated for example, in GitHub line
         // selection is represented using the URL fragment in the format #L1-L20. Removing the line substitutions with
         // empty strings in this case would leave the fragment in an incomplete format i.e. #L-L
+        int hash = template.lastIndexOf('#');
         if (lineSelection == null) {
-            lineSelection = new LineSelection(0, 0);
+            if (hash > -1) {
+                // If no line selection and template has a '#' then we will assume that the fragment would specify the
+                // line numbers and nothing else, and may safely be removed.
+                return template.substring(0, hash);
+            } else {
+                lineSelection = new LineSelection(0, 0);
+            }
         }
 
         template = template.replace("{line:start}", Integer.toString(lineSelection.start()));
